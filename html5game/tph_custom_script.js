@@ -37,10 +37,12 @@ async function getMetamaskAccount() {
 		console.log("User rejected request");
 	}
 	GMS_API.send_async_event_social(map);
-	connect();
+	await connect();
+	await getUserBalance();
+	await getUserTokens();
 }
 
-//CONNECT YOUR WALLET
+//CONNECT TO THE CONTRACT
 async function connect() {
 	var map = {};
 	map["id"] = "totalSupply";
@@ -55,7 +57,45 @@ async function connect() {
 	  	console.log(map["supply"]);
 
 	} catch(error) {
-		console.log("User rejected request");
+		console.log("Unable to get contract supply");
+	}
+	GMS_API.send_async_event_social(map);
+}
+
+//GET USER NFT BALANCE
+async function getUserBalance() {
+	var map = {};
+	map["id"] = "userBalance";
+	map["balance"] = "0";
+
+	try {
+		tokensBalance = await contract1.methods.balanceOf(account).call();
+
+		map["balance"] = tokensBalance;
+	  	console.log(web3);
+	  	console.log(map["balance"]);
+
+	} catch(error) {
+		console.log("Unable to get user balance");
+	}
+	GMS_API.send_async_event_social(map);
+}
+
+//GET USER NFT ARRAY
+async function getUserTokens() {
+	var map = {};
+	map["id"] = "userTokens";
+	map["tokens"] = "0";
+
+	try {
+		tokensArray = await contract1.methods.walletOfOwner(account).call();
+
+		map["tokens"] = tokensArray;
+	  	console.log(web3);
+	  	console.log(map["tokens"]);
+
+	} catch(error) {
+		console.log("Unable to get user tokens array");
 	}
 	GMS_API.send_async_event_social(map);
 }
