@@ -69,6 +69,7 @@ async function getUserBalance() {
 	map["balance"] = "0";
 
 	try {
+		contract1 = new web3.eth.Contract(ABI, CONTRACT, {gas: 3000000});
 		tokensBalance = await contract1.methods.balanceOf(account).call();
 
 		map["balance"] = tokensBalance;
@@ -88,6 +89,7 @@ async function getUserTokens() {
 	map["tokens"] = "0";
 
 	try {
+		contract1 = new web3.eth.Contract(ABI, CONTRACT, {gas: 3000000});
 		tokensArray = await contract1.methods.walletOfOwner(account).call();
 
 		map["tokens"] = tokensArray;
