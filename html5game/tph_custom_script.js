@@ -90,7 +90,7 @@ async function getUserTokens() {
 	try {
 		tokensArray = await contract1.methods.walletOfOwner(account).call();
 
-		map["tokens"] = tokensArray;
+		map["tokens"] = tokensArray.toString();
 	  	console.log(web3);
 	  	console.log(map["tokens"]);
 
