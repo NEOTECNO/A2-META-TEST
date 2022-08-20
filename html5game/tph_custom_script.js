@@ -47,10 +47,6 @@ async function connect() {
 	map["supply"] = "0";
 
 	try {
-	  	const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-	  	web3 = new Web3(window.ethereum);
-	  	account = accounts[0];
-
 		contract1 = new web3.eth.Contract(ABI, CONTRACT, {gas: 3000000});
 		totalSupply = await contract1.methods.totalSupply().call();
 
