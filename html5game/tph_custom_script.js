@@ -37,6 +37,7 @@ async function getMetamaskAccount() {
 		console.log("User rejected request");
 	}
 	GMS_API.send_async_event_social(map);
+	connect();
 }
 
 //CONNECT YOUR WALLET
