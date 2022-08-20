@@ -38,8 +38,6 @@ async function getMetamaskAccount() {
 	}
 	GMS_API.send_async_event_social(map);
 	await connect();
-	await getUserBalance();
-	await getUserTokens();
 }
 
 //CONNECT TO THE CONTRACT
@@ -60,6 +58,7 @@ async function connect() {
 		console.log("Unable to get contract supply");
 	}
 	GMS_API.send_async_event_social(map);
+	await getUserBalance();
 }
 
 //GET USER NFT BALANCE
@@ -80,6 +79,7 @@ async function getUserBalance() {
 		console.log("Unable to get user balance");
 	}
 	GMS_API.send_async_event_social(map);
+	await getUserTokens();
 }
 
 //GET USER NFT ARRAY
